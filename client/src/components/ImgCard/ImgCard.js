@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Carousel, Row, CardPanel, Col} from 'react-materialize';
+import { Row, CardPanel, Col} from 'react-materialize';
 
 export default class ImgCard extends Component {
 	render() {
@@ -13,7 +13,7 @@ export default class ImgCard extends Component {
 					<Row className=" valign-wrapper">
 						
 						<div className="col s10 offset-s1">
-							<img className="responsive-img" src="https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-394636.jpg" />				
+							<img atl="" className="responsive-img" src="https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-394636.jpg" />				
 						</div>
 						
 					</Row>
@@ -30,14 +30,6 @@ export default class ImgCard extends Component {
 				</Col>
 			</Row>
 			
-			
-
-			<Carousel
-				fixedItem={<h5 className='white-text'>Welcome to the NyT News Feed.</h5 >}
-				options={{ fullWidth: true }}
-				images={[ 'https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-394636.jpg']}
-			
-			/>
 			</div>
 		);
 	}

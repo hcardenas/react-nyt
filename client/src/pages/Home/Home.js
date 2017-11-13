@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import {Collection, CollectionItem, Row, Input, Collapsible, CollapsibleItem, Toast} from 'react-materialize';
+import {Collection, CollectionItem, Row, Input} from 'react-materialize';
 import API from "../../utils/API";
-
+import NoArtFound from '../../components/NoArtFound';
+import Articles from '../../components/Articles';
 
 
 
@@ -76,52 +77,12 @@ export default class Home extends Component {
 							<Input label="Topic" s={10} onChange={this.handleInputChange} name="topic" />
 							<Input type="date" label="Start Year" s={10} placeholder='1989' onChange={this.handleInputChange} name="start" />
 							<Input type="date" label="End Year" s={10} placeholder='2017' onChange={this.handleInputChange} name="end" />
-							<a className="waves-effect waves-light btn indigo darken-4" onClick={this.handleFormSubmit}><i className="material-icons left">cloud</i>Submit</a>
+							<a className="text-white waves-effect waves-light btn indigo darken-4" onClick={this.handleFormSubmit}><i className="material-icons left">cloud</i>Submit</a>
 						</Row>
 					</CollectionItem>		
 				</Collection>
-				{
-					this.state.data.length === 0 ?  
-						<div>
-							<Collection header='Results' className="center-align">
-								<CollectionItem>
-									<Row>
-										<p>Enter Search items to begin</p>
-									</Row>
-								</CollectionItem>		
-							</Collection>
-						</div> :
-						<div>
-							<Collapsible accordion>
-								{
-									this.state.data.map(ele => {
-									const title = ele.headline.main;
-									const date = ele.pub_date;
-									const url = ele.web_url;
-									const key = url;
-									return (
-									
-										<CollapsibleItem header={title} icon='filter_drama' key={key}>
-											{date}
-											<a  className="waves-effect waves-light btn  grey lighten-1 right" href={url} target="_blank">
-												<i className="material-icons left">
-													cloud
-												</i>
-												View Article
-											</a>
-											<a className="waves-effect waves-light btn indigo darken-4 right" 
-												onClick={(event) => {API.saveArticle({title: title, date: date, url: url})}}>
-												<i className="material-icons left">
-													cloud
-												</i>
-												save
-											</a>		
-										</CollapsibleItem>);
-									})
-								}
-							</Collapsible> 
-						</div>
-				}
+
+				{ this.state.data.length === 0 ?  <NoArtFound /> :<Articles data={this.state.data}/> }
 			</div>
 		);
 	}
